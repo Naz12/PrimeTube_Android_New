@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="playerviewmodel"
+            type="com.example.primetube.ui.player.PlayerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.player.PlayerFragment">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.exoplayer2.ui.PlayerView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playerView"
+            app:layout_constraintVertical_bias="0.52">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:contentPadding="3dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/videotittle_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@{playerviewmodel.videoData.videoTittle}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/viewcount_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{playerviewmodel.videoData.watchCount + ` views`}"
+                            app:layout_constraintStart_toStartOf="@+id/videotittle_textview"
+                            app:layout_constraintTop_toBottomOf="@+id/videotittle_textview" />
+
+                        <TextView
+                            android:id="@+id/date_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toEndOf="@+id/viewcount_textview"
+                            app:layout_constraintTop_toBottomOf="@+id/videotittle_textview"
+                            app:date="@{playerviewmodel.videoData.dateCreated}"/>
+
+                        <ImageButton
+                            android:id="@+id/like_btn"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/ic_thumb_up_black_24dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/dislike_btn"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/subscribercount_textView" />
+
+                        <ImageButton
+                            android:id="@+id/dislike_btn"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_thumb_down_black_24dp"
+                            app:layout_constraintEnd_toStartOf="@+id/download_btn"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/like_btn"
+                            app:layout_constraintTop_toTopOf="@+id/like_btn" />
+
+                        <ImageButton
+                            android:id="@+id/download_btn"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_file_download_black_24dp"
+                            app:layout_constraintEnd_toStartOf="@+id/comment_btn"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/dislike_btn"
+                            app:layout_constraintTop_toTopOf="@+id/dislike_btn" />
+
+                        <ImageButton
+                            android:id="@+id/comment_btn"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_insert_comment_black_24dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/download_btn"
+                            app:layout_constraintTop_toTopOf="@+id/download_btn" />
+
+                        <ImageView
+                            android:id="@+id/channelimage_imageView"
+                            android:layout_width="54dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_error_black_24dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/subscribercount_textView"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/channelname_textView"
+                            app:cirlceimage="@{playerviewmodel.videoData.channelId.channelImagePath}"/>
+
+                        <TextView
+                            android:id="@+id/channelname_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@{playerviewmodel.videoData.channelId.channelName}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintStart_toEndOf="@+id/channelimage_imageView"
+                            app:layout_constraintTop_toBottomOf="@+id/date_textview" />
+
+                        <TextView
+                            android:id="@+id/subscribercount_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:text="@{String.valueOf(playerviewmodel.videoData.channelId.subscribers.size)+ ` subscribers`}"
+                            app:layout_constraintStart_toEndOf="@+id/channelimage_imageView"
+                            app:layout_constraintTop_toBottomOf="@+id/channelname_textView" />
+
+                        <Button
+                            android:id="@+id/subscribe_button"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="Subscribe"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/subscribercount_textView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/channelname_textView" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="409dp"
+                    android:layout_height="247dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
