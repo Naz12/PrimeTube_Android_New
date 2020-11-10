@@ -12,7 +12,7 @@ import retrofit2.http.*
 class HttpClient {
  companion object{
 
-     val baseUrl = "http://10.240.72.81:3000/"
+     val baseUrl = "http://10.240.72.122:3000/"
      var retrofit = Retrofit.Builder()
          .baseUrl(baseUrl)
          .addConverterFactory(GsonConverterFactory.create())
